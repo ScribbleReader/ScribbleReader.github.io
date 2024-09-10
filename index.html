@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>跳转中...</title>
-    <script type="text/javascript">
-        // 页面加载后启动计时器，5秒钟后跳转到百度
-        function redirectToBaidu() {
+    <title>Auto Redirect</title>
+    <script>
+        // 创建一个函数来尝试访问第一个URL
+        function tryRedirect() {
+            // 尝试跳转到 www.ccccccc.com
+            window.location.href = "http://www.ccccccc.com";
+
+            // 设置一个定时器，如果 3 秒后还未加载成功，跳转到 baidu.com
             setTimeout(function() {
-                window.location.href = "https://sollong.xyz/";
-            }, 12000); // 5000 毫秒 = 5 秒
+                // 检查页面是否加载成功，如果没有，则跳转到 baidu.com
+                if (document.readyState !== 'complete') {
+                    window.location.href = "https://sollong.xyz/";
+                }
+            }, 3000); // 3 秒
         }
+
+        // 页面加载完成后尝试跳转
+        window.onload = tryRedirect;
     </script>
 </head>
-<body onload="redirectToBaidu()">
-    <h1>即将跳转到...</h1>
-    <p>5秒后跳转，如果没有跳转，请<a href="https://sollong.xyz/">点击这里</a>。</p>
+<body>
+    <h1>Redirecting...</h1>
 </body>
 </html>
